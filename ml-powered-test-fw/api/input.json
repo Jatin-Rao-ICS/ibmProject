@@ -1,0 +1,10 @@
+{
+    "/project/": {
+      "post": {
+        "in": "body",
+        "name": "bodyn",
+        "desc": "body",
+        "required": true
+      }
+    }
+}
