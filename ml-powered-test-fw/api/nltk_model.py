@@ -43,8 +43,6 @@ def get_endpoint(user_story, yaml_file):
         elif tagged[i][0] in (set(synonym(delete))):
             req_action.append(tagged[i])
             req_action.append("delete")
-    
-    #print(req_action)
 
     common_endpoint_tokens = [] 
     for endpoint in parse_yaml_response:
@@ -72,24 +70,16 @@ def get_endpoint(user_story, yaml_file):
                 lem_endpoint.append(ps.stem(k))
         set_difference=set(lem_endpoint).symmetric_difference(set(filtered_common_endpoint_tokens))
         if not set_difference:
-            find_method(endpoint,req_action[1],parse_yaml_response)
+            return(find_method(endpoint,req_action[1],parse_yaml_response))
 
 def find_method(endpoint1,check_method,parse_yaml_response):
     endpoint_dict = dict()
     for endpoint in parse_yaml_response:
-        #s = "/"+endpoint1
         if endpoint == endpoint1:
             for method in parse_yaml_response[endpoint]:
                 if method == check_method:
                     endpoint_dict.update({endpoint:[method,parse_yaml_response[endpoint][method]]})
-                    #print(endpoint_dict)
-                    print(endpoint_dict)
-
                     return endpoint_dict
-                    # print(type(endpoint_dict))
-    #                 print(endpoint," : " ,method)
-    #                 print(parse_yaml_response[endpoint][method])
-    # print()
 
 # data = "As a user, I want to identify persons in videos, and receive related information about them."
-# get_endpoint(data,"swagger(6).yaml")
+# print(get_endpoint(data,"swagger(6).yaml"))
